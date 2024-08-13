@@ -1,7 +1,7 @@
 # Docker Test SAML 2.0 Identity Provider (IdP)
 
-[![](https://img.shields.io/docker/v/3breadt/simplesamlphp?sort=semver)](https://hub.docker.com/r/3breadt/simplesamlphp)
-[![](https://github.com/3breadt/docker-simplesamlphp/workflows/CI/badge.svg)](https://github.com/3breadt/docker-simplesamlphp/actions?query=workflow%3ACI)
+[![Docker Hub Release](https://img.shields.io/docker/v/3breadt/simplesamlphp?sort=semver)](https://hub.docker.com/r/3breadt/simplesamlphp)
+[![CI Status](https://github.com/3breadt/docker-simplesamlphp/workflows/CI/badge.svg)](https://github.com/3breadt/docker-simplesamlphp/actions?query=workflow%3ACI)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/3breadt/docker-simplesamlphp/blob/master/LICENSE)
 
 Docker container with a plug and play SAML 2.0 Identity Provider (IdP) for development and testing.

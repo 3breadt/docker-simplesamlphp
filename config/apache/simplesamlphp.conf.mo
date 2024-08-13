@@ -20,8 +20,8 @@
     ServerName localhost
     DocumentRoot /var/www/simplesamlphp
     SSLEngine on
-    SSLCertificateFile /etc/ssl/private/cert.crt
-    SSLCertificateKeyFile /etc/ssl/private/private.key
+    SSLCertificateFile /var/www/simplesamlphp/cert/cert.crt
+    SSLCertificateKeyFile /var/www/simplesamlphp/cert/private.key
     Alias /simplesaml /var/www/simplesamlphp/www
 
    <Directory /var/www/simplesamlphp>

@@ -25,13 +25,14 @@ RUN curl -sSL -o /tmp/simplesamlphp.tar.gz https://github.com/simplesamlphp/simp
 COPY config/simplesamlphp/config.php /var/www/simplesamlphp/config
 COPY config/simplesamlphp/authsources.php /var/www/simplesamlphp/config
 COPY config/simplesamlphp/saml20-sp-remote.php /var/www/simplesamlphp/metadata
-COPY config/simplesamlphp/server.crt /var/www/simplesamlphp/cert/
-COPY config/simplesamlphp/server.pem /var/www/simplesamlphp/cert/
+COPY config/simplesamlphp/server.crt /etc/ssl/private/cert.crt
+COPY config/simplesamlphp/server.pem /etc/ssl/private/private.key
 
 RUN echo "<?php" > /var/www/simplesamlphp/metadata/shib13-sp-remote.php
 
 # Apache
 ENV HTTP_PORT 8080
+ENV HTTPS_PORT 8443
 
 COPY config/apache/ports.conf.mo /tmp
 COPY config/apache/simplesamlphp.conf.mo /tmp
@@ -40,7 +41,7 @@ RUN /tmp/mo /tmp/ports.conf.mo > /etc/apache2/ports.conf && \
 
 # hadolint ignore=DL3059
 RUN a2dissite 000-default.conf default-ssl.conf && \
-    a2enmod rewrite && \
+    a2enmod rewrite ssl && \
     a2ensite simplesamlphp.conf
 
 # Clean up
@@ -51,4 +52,4 @@ RUN rm -rf /tmp/*
 WORKDIR /var/www/simplesamlphp
 
 # General setup
-EXPOSE ${HTTP_PORT}
+EXPOSE ${HTTP_PORT} ${HTTPS_PORT}

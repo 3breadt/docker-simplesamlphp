@@ -2,41 +2,41 @@ name: Release docker image as develop
 on:
   push:
     branches:
-      - master
+    - master
 
 jobs:
   release-image-to-github:
     name: Release image to GitHub
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Build and Push to GitHub
-        run: |
-          echo "${REGISTRY_TOKEN}" | docker login "${REGISTRY_HOST}" -u "${REGISTRY_USERNAME}" --password-stdin
-          make release RELEASE_TAGS="develop"
-        env:
-          REGISTRY_HOST: ghcr.io
-          REGISTRY_USERNAME: ${{ github.repository_owner }}
-          REGISTRY_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+    - uses: actions/checkout@v4
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Build and Push to GitHub
+      run: |
+        echo "${REGISTRY_TOKEN}" | docker login "${REGISTRY_HOST}" -u "${REGISTRY_USERNAME}" --password-stdin
+        make release RELEASE_TAGS="develop"
+      env:
+        REGISTRY_HOST: ghcr.io
+        REGISTRY_USERNAME: ${{ github.repository_owner }}
+        REGISTRY_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 
   release-image-to-docker-hub:
     name: Release image to Docker Hub
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Build and Push to Docker Hub
-        run: |
-          echo "${REGISTRY_TOKEN}" | docker login -u "${REGISTRY_USERNAME}" --password-stdin
-          make release RELEASE_TAGS="develop"
-        env:
-          REGISTRY_HOST: index.docker.io
-          REGISTRY_USERNAME: kenchan0130
-          REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+    - uses: actions/checkout@v4
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Build and Push to Docker Hub
+      run: |
+        echo "${REGISTRY_TOKEN}" | docker login -u "${REGISTRY_USERNAME}" --password-stdin
+        make release RELEASE_TAGS="develop"
+      env:
+        REGISTRY_HOST: index.docker.io
+        REGISTRY_USERNAME: 3breadt
+        REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}

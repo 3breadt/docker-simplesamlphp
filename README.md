@@ -1,8 +1,8 @@
 # Docker Test SAML 2.0 Identity Provider (IdP)
 
-[![](https://img.shields.io/docker/v/kenchan0130/simplesamlphp?sort=semver)](https://hub.docker.com/r/kenchan0130/simplesamlphp)
-[![](https://github.com/kenchan0130/docker-simplesamlphp/workflows/CI/badge.svg)](https://github.com/kenchan0130/docker-simplesamlphp/actions?query=workflow%3ACI)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kenchan0130/docker-simplesamlphp/blob/master/LICENSE)
+[![](https://img.shields.io/docker/v/3breadt/simplesamlphp?sort=semver)](https://hub.docker.com/r/3breadt/simplesamlphp)
+[![](https://github.com/3breadt/docker-simplesamlphp/workflows/CI/badge.svg)](https://github.com/3breadt/docker-simplesamlphp/actions?query=workflow%3ACI)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/3breadt/docker-simplesamlphp/blob/master/LICENSE)
 
 Docker container with a plug and play SAML 2.0 Identity Provider (IdP) for development and testing.
 
@@ -10,7 +10,7 @@ Built with [SimpleSAMLphp](https://simplesamlphp.org/). Based on [official PHP8 
 
 SimpleSAMLphp is logging to stdout on debug log level. Apache is logging error and access log to stdout.
 
-**You must not use at your production. This is for test.**
+**THIS IMAGE IS NOT SUITABLE FOR USE IN PRODUCTION ENVIRONMENTS, USE ONLY FOR TESTING.**
 
 ## Usage
 
@@ -22,7 +22,7 @@ docker run --name=idp \
   -e SIMPLESAMLPHP_SP_ENTITY_ID=http://app.example.com \
   -e SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE=http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/test-sp \
   -e SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE=http://localhost/simplesaml/module.php/saml/sp/saml2-logout.php/test-sp \
-  -d kenchan0130/simplesamlphp
+  -d 3breadt/simplesamlphp
 ```
 
 ### Using docker-compose
@@ -31,7 +31,7 @@ docker run --name=idp \
 version: "3"
 services:
   idp:
-    image: kenchan0130/simplesamlphp
+    image: 3breadt/simplesamlphp
     container_name: idp
     ports:
       - "8080:8080"
@@ -126,7 +126,7 @@ docker run --name=idp \
   -e SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE=http://localhost/simplesaml/module.php/saml/sp/saml2-acs.php/test-sp \
   -e SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE=http://localhost/simplesaml/module.php/saml/sp/saml2-logout.php/test-sp \
   -v $PWD/authsources.php:/var/www/simplesamlphp/config/authsources.php \
-  -d kenchan0130/simplesamlphp
+  -d 3breadt/simplesamlphp
 ```
 
 **docker-compose**
@@ -135,7 +135,7 @@ docker run --name=idp \
 version: "3"
 services:
   idp:
-    image: kenchan0130/simplesamlphp
+    image: 3breadt/simplesamlphp
     container_name: idp
     ports:
       - "8080:8080"
@@ -174,7 +174,7 @@ If you save this source as `saml20-sp-remote.php`, you can customize IdP users b
 docker run --name=idp \
   -p 8080:8080 \
   -v saml20-sp-remote.php:/var/www/simplesamlphp/metadata/saml20-sp-remote.php \
-  -d kenchan0130/simplesamlphp
+  -d 3breadt/simplesamlphp
 ```
 
 **docker-compose**
@@ -183,7 +183,7 @@ docker run --name=idp \
 version: "3"
 services:
   idp:
-    image: kenchan0130/simplesamlphp
+    image: 3breadt/simplesamlphp
     container_name: idp
     ports:
       - "8080:8080"
@@ -193,9 +193,10 @@ services:
 
 For detailed attributes, see [SP remote metadata reference#SAML 2.0 options](https://simplesamlphp.org/docs/stable/simplesamlphp-reference-sp-remote#section_2).
 
-## Inspired By
+## Based On
 
 - https://github.com/kristophjunge/docker-test-saml-idp
+- https://github.com/3breadt/docker-simplesamlphp
 
 ## License
 

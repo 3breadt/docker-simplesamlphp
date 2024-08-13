@@ -13,7 +13,7 @@ ARG IMAGE_NAME=unkown
 LABEL git-revision=$GIT_REVISION \
       git-origin=$GIT_ORIGIN \
       image-name=$IMAGE_NAME \
-      maintainer="Tadayuki Onishi <tt.tanishi100@gmail.com>"
+      maintainer="Daniel Dreibrodt <daniel.dreibrodt@gmail.com>"
 
 # SimpleSAMLphp
 ARG SIMPLESAMLPHP_VERSION

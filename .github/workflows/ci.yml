@@ -2,36 +2,36 @@ name: CI
 on:
   push:
     branches:
-      - master
+    - master
     tags:
-      - "!*"
+    - "!*"
   pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Install dgoss
-        run: |
-          curl -sfL https://goss.rocks/install | sudo sh
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Run test
-        run: |
-          for platform in ${PLATFORMS}; do
-            echo "Testing ${platform}"
-            make build PLATFORM="${platform}"
-            docker images
-            make test PLATFORM="${platform}"
-          done
-        env:
-          PLATFORMS: linux/amd64 linux/arm64
+    - uses: actions/checkout@v4
+    - name: Install dgoss
+      run: |
+        curl -sfL https://goss.rocks/install | sudo sh
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Run test
+      run: |
+        for platform in ${PLATFORMS}; do
+          echo "Testing ${platform}"
+          make build PLATFORM="${platform}"
+          docker images
+          make test PLATFORM="${platform}"
+        done
+      env:
+        PLATFORMS: linux/amd64 linux/arm64
 
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: hadolint/hadolint-action@v3.1.0
+    - uses: actions/checkout@v4
+    - uses: hadolint/hadolint-action@v3.1.0

@@ -25,8 +25,8 @@ RUN curl -sSL -o /tmp/simplesamlphp.tar.gz https://github.com/simplesamlphp/simp
 COPY config/simplesamlphp/config.php /var/www/simplesamlphp/config
 COPY config/simplesamlphp/authsources.php /var/www/simplesamlphp/config
 COPY config/simplesamlphp/saml20-sp-remote.php /var/www/simplesamlphp/metadata
-COPY config/simplesamlphp/server.crt /var/www/simplesamlphp/cert/cert.crt
-COPY config/simplesamlphp/server.pem /var/www/simplesamlphp/cert/private.key
+COPY config/simplesamlphp/server.crt /var/www/simplesamlphp/cert/
+COPY config/simplesamlphp/server.pem /var/www/simplesamlphp/cert/
 
 RUN echo "<?php" > /var/www/simplesamlphp/metadata/shib13-sp-remote.php
 

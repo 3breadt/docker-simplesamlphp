@@ -1,8 +1,8 @@
 name: Release docker image
 on:
   push:
-    branches:
-    - master
+    tags:
+    - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   check-release:
@@ -14,7 +14,7 @@ jobs:
     - name: Compare Docker Registory and Local Repository Version
       id: compare_docker_registory_and_local_repository_version
       run: |
-        release_version=$(cat .simplesamlphp_version)
+        release_version=$(cat .image_version)
         echo "Release version is ${release_version}"
         if [[ "$( curl -sfL https://registry.hub.docker.com/v2/repositories/3breadt/simplesamlphp/tags | jq --arg version "${release_version}" '.results[] | select(.name == $version)' )" ]]; then
           echo "${release_version} is already released."

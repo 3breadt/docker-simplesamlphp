@@ -1,11 +1,12 @@
 NAME                  := $(shell basename $(CURDIR) | sed -e "s/^docker-//g")
 REVISION              := $(shell git rev-parse --short HEAD)
 ORIGIN                := $(shell git remote get-url origin)
+VERSION								:= $(shell cat .image_version)
 SIMPLESAMLPHP_VERSION := $(shell cat .simplesamlphp_version)
 REGISTRY_HOST         ?= index.docker.io
 REGISTRY_USERNAME     ?= defaultusername
 IMAGE                 := $(REGISTRY_HOST)/$(REGISTRY_USERNAME)/$(NAME)
-RELEASE_TAGS          := $(SIMPLESAMLPHP_VERSION) latest
+RELEASE_TAGS          := $(VERSION) simplesamlphp-$(SIMPLESAMLPHP_VERSION) latest
 
 .PHONY: release
 release: ## build and push docker images. e.g.) make release

@@ -12,6 +12,14 @@ SimpleSAMLphp is logging to stdout on debug log level. Apache is logging error a
 
 **THIS IMAGE IS NOT SUITABLE FOR USE IN PRODUCTION ENVIRONMENTS, USE ONLY FOR TESTING.**
 
+## Changelog
+
+### Version 1.0.0
+
+- Added HTTPS support
+- Added configurable cookie lifetime
+- Based on kenchan0130/simplesamlphp:v1.19.9
+
 ## Usage
 
 ### Using docker run command
